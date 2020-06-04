@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1>All Events</h1>
+
+<nav th:replace="fragments :: header"></nav>
+
+<p th:unless="${events} and ${events.size()}">No Events!</p>
+<table class="table table-striped">
+    <head>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </head>
+    <tr th:each="event : ${events}">
+        <td th:text="${event}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
