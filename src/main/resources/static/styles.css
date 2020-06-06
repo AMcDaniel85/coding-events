@@ -1,0 +1,25 @@
+body {
+  font-size: 18px;
+}
+
+tr:nth-child(even) {background-color: #b6b9cb;}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+th {
+    text-align: center;
+    background-color: #7a85c7;
+    font-size: 20px;
+}
+
+.event {
+    margin-left:auto;
+    margin-right:auto;
+  }
