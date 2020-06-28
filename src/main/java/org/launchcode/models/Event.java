@@ -1,53 +1,43 @@
 package org.launchcode.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.launchcode.models.EventType;
 
-import javax.validation.constraints.*;
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextID = 1;
-    @NotBlank(message = "Name is required.")
-    @Size(min=3,max=50, message = "Name must be between 3 and 50 characters.")
+
+    @NotBlank(message = "Name is required")
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
-    @Size(max=500, message = "Description too long")
+
+    @Size(max = 500, message = "Description too long!")
     private String description;
-    @NotBlank
+
+    @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date date;
-    @NotBlank(message = "Must enter location.")
-    private String location;
-    @NotNull
-    private double price;
+
     private EventType type;
-    @AssertTrue
-    private Boolean mustRegister;
-    @Min(1)
-    private double numAttendees;
 
-    public Event(){
-        this.id = nextID;
-        nextID++;
-    }
-
-    public Event(String name, String description, String contactEmail, Date date, String location, double price, EventType type,
-                 Boolean mustRegister, double numAttendees) {
-        this();
+    public Event(String name, String description, String contactEmail, EventType type) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.date = date;
-        this.location = location;
-        this.price = price;
         this.type = type;
-        this.mustRegister = true;
-        this.numAttendees = numAttendees;
     }
+
+    public Event() {}
 
     public String getName() {
         return name;
@@ -65,40 +55,12 @@ public class Event {
         this.description = description;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getContactEmail() {
         return contactEmail;
     }
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public EventType getType() {
@@ -109,20 +71,8 @@ public class Event {
         this.type = type;
     }
 
-    public Boolean getMustRegister() {
-        return mustRegister;
-    }
-
-    public void setMustRegister(Boolean mustRegister) {
-        this.mustRegister = mustRegister;
-    }
-
-    public double getNumAttendees() {
-        return numAttendees;
-    }
-
-    public void setNumAttendees(double numAttendees) {
-        this.numAttendees = numAttendees;
+    public int getId() {
+        return id;
     }
 
     @Override
