@@ -17,11 +17,6 @@
             <th>Description</th>
             <th>Type</th>
             <th>Contact Email</th>
-            <th>Date</th>
-            <th>Location</th>
-            <th>Price</th>
-            <th>Registering?</th>
-            <th>Number of attendees</th>
         </tr>
     </head>
     <tr th:each="event : ${events}">
@@ -30,11 +25,6 @@
         <td th:text="${event.description}"></td>
         <td th:text="${event.type.displayName}"></td>
         <td th:text="${event.contactEmail}"></td>
-        <td th:text="${event.date}"></td>
-        <td th:text="${event.location}"></td>
-        <td th:text="${event.price}"></td>
-        <td th:text="${event.mustRegister}"></td>
-        <td th:text="${event.numAttendees}"></td>
         <td>
             <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
         </td>
