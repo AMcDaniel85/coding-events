@@ -2,7 +2,6 @@ package org.launchcode.controllers;
 
 import org.launchcode.data.EventCategoryRepository;
 import org.launchcode.models.EventCategory;
-import org.launchcode.models.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +28,7 @@ public class EventCategoryController {
     public String renderCreateEventCategoryForm(Model model) {
         model.addAttribute("title", "Create Category");
         model.addAttribute("eventCategory", new EventCategory());
-        model.addAttribute("types", EventType.values());
+        model.addAttribute("categories", eventCategoryRepository.findAll());
         return "eventCategories/create";
     }
 
