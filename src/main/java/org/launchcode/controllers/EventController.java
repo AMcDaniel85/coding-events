@@ -1,6 +1,8 @@
 package org.launchcode.controllers;
 
+import org.launchcode.data.EventCategoryRepository;
 import org.launchcode.models.Event;
+import org.launchcode.models.EventCategory;
 import org.launchcode.models.EventType;
 import org.launchcode.data.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private EventCategoryRepository eventCategoryRepository;
+
     @GetMapping
     public String displayAllEvents(Model model) {
         model.addAttribute("title", "All Events");
@@ -29,7 +34,7 @@ public class EventController {
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
-        model.addAttribute("types", EventType.values());
+        model.addAttribute("categories", eventCategoryRepository.findAll());
         return "events/create";
     }
 
