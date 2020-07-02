@@ -3,32 +3,24 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1>All Events</h1>
-
 <header th:replace="fragments :: header"></header>
 
-<p th:unless="${events} and ${events.size()}">No Events!</p>
-
 <table class="table table-striped">
-    <head>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Contact Email</th>
-            <th>Category</th>
-
-        </tr>
-    </head>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Contact Email</th>
+        <th>Category</th>
+    </tr>
+    </thead>
     <tr th:each="event : ${events}">
         <td th:text="${event.id}"></td>
         <td th:text="${event.name}"></td>
         <td th:text="${event.description}"></td>
         <td th:text="${event.contactEmail}"></td>
         <td th:text="${event.eventCategory.name}"></td>
-        <td>
-            <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
-        </td>
     </tr>
 </table>
 
